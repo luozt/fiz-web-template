@@ -1,0 +1,34 @@
+@import "_func.less";
+
+.hide{display: none!important;}
+
+/** 前缀：u-。可复用样式/UI控件样式 */
+.u-noText{text-indent:-9999px; font-size: 0;}
+
+/** 浮动 */
+.u-lf{float: left;}
+.u-rf{float: right;}
+.u-clear{clear:both;}
+.u-clr{*zoom:1;}
+.u-clr:after{content:'.'; display: block; height:0; visibility:hidden; overflow:hidden; clear:both;}
+.u-clearfix{*zoom:1;}
+.u-clearfix:after{content:'.'; display: block; height:0; visibility:hidden; overflow:hidden; clear:both;}
+
+/** 前缀: sprite-。精灵图基本样式与各图层 */
+.sprite-ico{display:block; border:none; background-color:transparent; background-repeat:no-repeat;}
+
+/**sprites写法示例：
+.bgUrl(@filename,@width,@height){
+  background-image: url("../img/sprites/_@{filename}.png?__sprite");
+  width:@width*1px;
+  height:@height*1px;
+}
+.sprite-01{ .bgUrl("01",311,90);}
+.sprite-08{ .bgUrl("08",200,100);}
+*/
+
+// 布局
+.u-fullWrap{width: 100%; min-width: 1200px; *width:auto;}
+.u-centerWrap{width: 1200px; margin:0 auto; position: relative;}
+
+

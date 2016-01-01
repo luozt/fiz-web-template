@@ -1,0 +1,261 @@
+
+// 兼容IE7+的input元素写法
+@ie8-10-fix:~"\0";
+@placeholderColor: #a8acb4;
+.u-input(@height, @lineHeight, @paddingTop, @paddingBottom){
+  height: 1px*@lineHeight;
+  line-height: 1px*@lineHeight;
+  padding-top:1px*@paddingTop;
+  padding-bottom: 1px*@paddingBottom;
+  height: @height*1px@ie8-10-fix;
+  line-height:@height*1px@ie8-10-fix;
+  padding-top: 0px@ie8-10-fix;
+  padding-bottom: 0px@ie8-10-fix;
+  *height: 1px*@height;
+  *line-height: 1px*@height;
+  *padding-top: 0;
+  *padding-bottom: 0;
+  &::-webkit-input-placeholder {color:@placeholderColor;}
+  &:-moz-placeholder {color:@placeholderColor;}
+  &::-moz-placeholder {color:@placeholderColor;}
+  &:-ms-input-placeholder {color:@placeholderColor;}
+}
+.u-input(@height, @lineHeight, @paddingTop, @paddingBottom,@placeholderColor){
+  height: 1px*@lineHeight;
+  line-height: 1px*@lineHeight;
+  padding-top:1px*@paddingTop;
+  padding-bottom: 1px*@paddingBottom;
+  height: @height*1px@ie8-10-fix;
+  line-height:@height*1px@ie8-10-fix;
+  padding-top: 0px@ie8-10-fix;
+  padding-bottom: 0px@ie8-10-fix;
+  *height: 1px*@height;
+  *line-height: 1px*@height;
+  *padding-top: 0;
+  *padding-bottom: 0;
+  &::-webkit-input-placeholder {color:@placeholderColor;}
+  &:-moz-placeholder {color:@placeholderColor;}
+  &::-moz-placeholder {color:@placeholderColor;}
+  &:-ms-input-placeholder {color:@placeholderColor;}
+}
+
+
+.abs(@top, @left){
+  position: absolute;
+  top: @top*1px;
+  left: @left*1px;
+}
+
+.abs-r(@top, @right){
+  position: absolute;
+  top: @top*1px;
+  right: @right*1px;
+}
+
+.ease(){
+  .transition(all .3s);
+}
+
+.ease(@time){
+  .transition(all @time);
+}
+
+
+.text-shadow (@string: 0 1px 3px rgba(0, 0, 0, 0.25)) {
+    text-shadow: @string;
+}
+.box-shadow (@string) {
+  -webkit-box-shadow: @string;
+  -moz-box-shadow:    @string;
+  box-shadow:         @string;
+}
+.drop-shadow (@x: 0, @y: 1px, @blur: 2px, @spread: 0, @alpha: 0.25) {
+  -webkit-box-shadow: @x @y @blur @spread rgba(0, 0, 0, @alpha);
+  -moz-box-shadow:  @x @y @blur @spread rgba(0, 0, 0, @alpha);
+  box-shadow:   @x @y @blur @spread rgba(0, 0, 0, @alpha);
+}
+.inner-shadow (@x: 0, @y: 1px, @blur: 2px, @spread: 0, @alpha: 0.25) {
+  -webkit-box-shadow: inset @x @y @blur @spread rgba(0, 0, 0, @alpha);
+  -moz-box-shadow:    inset @x @y @blur @spread rgba(0, 0, 0, @alpha);
+  box-shadow:         inset @x @y @blur @spread rgba(0, 0, 0, @alpha);
+}
+
+.box-sizing (@type: border-box) {
+  -webkit-box-sizing: @type;
+  -moz-box-sizing:    @type;
+  box-sizing:         @type;
+}
+
+.border-radius (@radius: 5px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius:    @radius;
+  border-radius:         @radius;
+
+  -moz-background-clip:    padding;
+  -webkit-background-clip: padding-box;
+  background-clip:         padding-box;
+}
+.border-radiuses (@topright: 0, @bottomright: 0, @bottomleft: 0, @topleft: 0) {
+  -webkit-border-top-right-radius:    @topright;
+  -webkit-border-bottom-right-radius: @bottomright;
+  -webkit-border-bottom-left-radius:  @bottomleft;
+  -webkit-border-top-left-radius:     @topleft;
+
+  -moz-border-radius-topright:        @topright;
+  -moz-border-radius-bottomright:     @bottomright;
+  -moz-border-radius-bottomleft:      @bottomleft;
+  -moz-border-radius-topleft:         @topleft;
+
+  border-top-right-radius:            @topright;
+  border-bottom-right-radius:         @bottomright;
+  border-bottom-left-radius:          @bottomleft;
+  border-top-left-radius:             @topleft;
+
+  -moz-background-clip:    padding;
+  -webkit-background-clip: padding-box;
+  background-clip:         padding-box;
+}
+
+
+.gradient (@startColor: #eee, @endColor: white) {
+  background-color: @startColor;
+  background: -webkit-gradient(linear, left top, left bottom, from(@startColor), to(@endColor));
+  background: -webkit-linear-gradient(top, @startColor, @endColor);
+  background: -moz-linear-gradient(top, @startColor, @endColor);
+  background: -ms-linear-gradient(top, @startColor, @endColor);
+  background: -o-linear-gradient(top, @startColor, @endColor);
+  background: linear-gradient(to bottom, @startColor,@endColor);
+}
+.horizontal-gradient (@startColor: #eee, @endColor: white) {
+  background-color: @startColor;
+  background-image: -webkit-gradient(linear, left top, right top, from(@startColor), to(@endColor));
+  background-image: -webkit-linear-gradient(left, @startColor, @endColor);
+  background-image: -moz-linear-gradient(left, @startColor, @endColor);
+  background-image: -ms-linear-gradient(left, @startColor, @endColor);
+  background-image: -o-linear-gradient(left, @startColor, @endColor);
+}
+
+
+.scale (@factor) {
+  -webkit-transform: scale(@factor);
+  -moz-transform:    scale(@factor);
+  -ms-transform:     scale(@factor);
+  -o-transform:      scale(@factor);
+}
+.rotate (@deg) {
+  -webkit-transform: rotate(@deg);
+  -moz-transform:    rotate(@deg);
+  -ms-transform:     rotate(@deg);
+  -o-transform:      rotate(@deg);
+  transform:      rotate(@deg);
+}
+.skew (@deg, @deg2) {
+  -webkit-transform:       skew(@deg, @deg2);
+  -moz-transform:    skew(@deg, @deg2);
+  -ms-transform:     skew(@deg, @deg2);
+  -o-transform:      skew(@deg, @deg2);
+  transform:      skew(@deg, @deg2);
+}
+.translate (@x, @y:0) {
+  -webkit-transform:       translate(@x, @y);
+  -moz-transform:    translate(@x, @y);
+  -ms-transform:     translate(@x, @y);
+  -o-transform:      translate(@x, @y);
+  transform:      translate(@x, @y);
+}
+.translate3d (@x, @y: 0, @z: 0) {
+  -webkit-transform:       translate3d(@x, @y, @z);
+  -moz-transform:    translate3d(@x, @y, @z);
+  -ms-transform:     translate3d(@x, @y, @z);
+  -o-transform:      translate3d(@x, @y, @z);
+  transform:      translate3d(@x, @y, @z);
+}
+.perspective (@value: 1000) {
+  -webkit-perspective:  @value;
+  -moz-perspective:   @value;
+  -ms-perspective:  @value;
+  perspective:    @value;
+}
+.transform-origin (@x:center, @y:center) {
+  -webkit-transform-origin: @x @y;
+  -moz-transform-origin:    @x @y;
+  -ms-transform-origin:     @x @y;
+  -o-transform-origin:      @x @y;
+  transform-origin:      @x @y;
+}
+
+.keyframes(@name, @frames) {
+  @-webkit-keyframes @name { @frames(); }
+  @-moz-keyframes @name { @frames(); }
+  @-ms-keyframes @name { @frames(); }
+  @-o-keyframes @name { @frames(); }
+  @keyframes @name { @frames(); }
+}
+
+
+/**
+.keyframes(demo_keyframes, {
+  100% {.transform(rotate(360-43deg));}
+});
+*/
+.animation(@arg){
+  -moz-animation:@arg;
+  -webkit-animation:@arg;
+  -o-animation:@arg;
+  -ms-animation:@arg;
+  animation:@arg;
+}
+
+
+
+
+
+
+/** 其他常用 */
+.transition(@args){
+  -webkit-transition: @args;
+     -moz-transition: @args;
+      -ms-transition: @args;
+       -o-transition: @args;
+          transition: @args;
+}
+.transition-delay(@args){
+  -webkit-transition-delay: @args;
+     -moz-transition-delay: @args;
+      -ms-transition-delay: @args;
+       -o-transition-delay: @args;
+          transition-delay: @args;
+}
+
+.transform(@args){
+  -webkit-transform:@args;
+     -moz-transform:@args;
+      -ms-transform:@args;
+       -o-transform:@args;
+          transform:@args;
+}
+
+
+.u-inlineBlock(){display: inline-block; *display:inline; *zoom:1;}
+.u-layer(){position: absolute; top: 0; left: 0;}
+.matrixImg(){.transform(matrix(1.1, 0, 0, 1.1, 0, 0));}
+.yahei(@fontSize, @lineHeight){
+  font:@fontSize/@lineHeight "微软雅黑","microsoft yahei";
+}
+.yahei(@fontSize, @lineHeight,@bold){
+  font: bold @fontSize/@lineHeight "微软雅黑","microsoft yahei";
+}
+.songti(@fontSize, @lineHeight){
+  font:@fontSize/@lineHeight "宋体", songti;
+}
+.songti(@fontSize, @lineHeight,@bold){
+  font: bold @fontSize/@lineHeight "宋体", songti;
+}
+
+
+/**
+ * 三角形icon
+ */
+.triangleIcon(@direction, @length, @color){
+  display:block; width: 0; height: 0; border: .5px*@length solid transparent; border-@{direction}-color:@color;
+}

@@ -1,0 +1,20 @@
+@import "_func.less";
+@import "_kreset.less";
+
+html{ -ms-text-size-adjust:100%; -webkit-text-size-adjust:100%; text-size-adjust:100%;}
+
+/*@media媒体查询，进行自适应调整*/
+// 根据设计稿选择相应的media样式
+@import "_media_640x960.less";
+// @import "_media_750x1134.less";
+
+/*
+所有单位使用rem。
+注：安卓下<textarea>标签的内容字体大小不支持rem设置，如有需要使用响应式及px单位设置其字体。
+*/
+// 总框架
+.g-main{ width: 100%; height: 100%; min-height: 100%; position: relative; }
+.g-content{position: absolute; top: 0; border: 0; left: 0; right: 0; width: 100%; overflow: hidden;
+  -webkit-overflow-scrolling:touch; overflow-scrolling:touch;
+}
+

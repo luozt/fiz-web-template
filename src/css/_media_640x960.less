@@ -1,0 +1,38 @@
+/*
+采用640x960的移动端设计稿
+移动端的设计稿以640x960为基本，同时可以兼容显示屏幕较长的640x1136（iphone5/5S）。
+整个页面高度应该适应减去状态顶栏的高度(40px)和浏览器菜单栏的高度(80px),也就是说设计最终必须适应832px和1008px的高度
+
+html{font-size:62.5%;} 刚好为10px;
+#example{font-size:1.2rem;} 设置#example的字体大小为12px;
+#example div{font-size:1.4rem; width:10rem;height:10rem;} 设置#example子节点div的字体大小为14px;宽度为100px;高度100px
+*/
+
+html{font-size:62.5%;}
+
+@media screen and (min-width:360px) and (max-width:374px) and (orientation:portrait) {
+  html { font-size: 70.3%; }
+}
+@media screen and (min-width:375px) and (max-width:383px) and (orientation:portrait) {
+  html { font-size: 73.24%; }
+}
+@media screen and (min-width:384px) and (max-width:399px) and (orientation:portrait) {
+  html { font-size: 75%; }
+}
+@media screen and (min-width:400px) and (max-width:413px) and (orientation:portrait) {
+  html { font-size: 78.125%; }
+}
+@media screen and (min-width:414px) and (max-width:431px) and (orientation:portrait){
+  html { font-size: 80.86%; }
+}
+@media screen and (min-width:432px) and (max-width:479px) and (orientation:portrait){
+  html { font-size: 84.375%; }
+}
+/*下面两个是针对android pad分辨率设置的，根据页面类型确定是否在pad中对页面进行放大，需要的话保留下面两个设置
+如果不需要，去掉下面两行的设置并把上一行的(max-width:479px)去掉*/
+@media screen and (min-width:480px)and (max-width:639px) and (orientation:portrait){
+   html{ font-size:93.75%;}
+}
+@media screen and (min-width:640px) and (orientation:portrait){
+   html{ font-size:125%;}
+}

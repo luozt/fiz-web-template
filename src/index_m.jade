@@ -1,0 +1,26 @@
+doctype html
+html(lang="zh-CN")
+  head
+    meta(charset="utf-8")
+
+    title page-title
+
+    include ./_inc/_seo.jade
+    include ./_inc/_viewport.jade
+
+    link(rel="stylesheet",href="css/index_m.less")
+
+  body
+    h1.hide page-h1-title
+
+    .g-wrap
+      .g-content
+
+
+    //- 横屏则显示提示框
+    #forhorview 推荐使用竖屏显示
+
+    //-移动端推荐使用zepto
+    script(src="http://libs.useso.com/js/zepto/1.1.3/zepto.js")
+    script(src="js/index.coffee")
+
