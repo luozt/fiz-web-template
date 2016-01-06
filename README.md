@@ -56,6 +56,7 @@ PC开发，可把带"_m"后缀的文件和其他相应的移动开发文件删�
 3、编译项目并监听变化：
 
   * 本地调试：`fiz release -w`
+  * 远程环境调试：`fiz release pu -w`
   * 相对路径打包：`fiz release lc`
   * 测试环境打包：`fiz release qa`
   * 正式环境打包：`fiz release pr`

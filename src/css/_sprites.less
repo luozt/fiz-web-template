@@ -1,19 +1,14 @@
-
-.bgUrl(@filename,@width,@height){
-  background-image: url("../../img/enpr-sprites-2/@{filename}.png?__sprite");
-  width:@width*1px;
-  height:@height*1px;
+/** 雪碧图配置 */
+.sprite-item(@basename, @ext, @width, @height){
+  background-image: url("../img/sprites/@{basename}@{ext}");
+  width: @width*1px;
+  height: @height*1px;
 }
 
-// .sprite-01{.bgUrl("01",16,16);}
-// .sprite-02{.bgUrl("02",20,23);}
-// .sprite-03{.bgUrl("03",16,23);}
-// .sprite-04{.bgUrl("04",18,23);}
-// .sprite-05{.bgUrl("05",23,22);}
-// .sprite-06{.bgUrl("06",24,22);}
-// .sprite-07{.bgUrl("07",17,23);}
-// .sprite-08{.bgUrl("08",33,33);}
+// .sprite-1{.sprite-item("1",".jpg",454,810);}
+// .sprite-2{.sprite-item("2",".jpg",607,810);}
+// .sprite-3{.sprite-item("3",".jpg",640,854);}
 
 // jade使用示例
-// span.sprite-ico.sprite-01
-// span.sprite-ico.sprite-02.u-noText 关闭
+// span.sprite-ico.sprite-1
+// span.sprite-ico.sprite-2.u-noText 关闭
