@@ -32,7 +32,7 @@ src                                     //存放该项目源码
 
 **tips**:
 
-- `src/css/_sprites.less`已提供雪碧图的使用示例，开发者无需自己拼合雪碧图，只需按照这个文件的写法，在发布时，fis3将自动拼合雪碧图
+- `src/css/_sprites.less`已提供雪碧图的使用示例，开发者无需自己拼合雪碧图，只需按照这个文件的写法，在发布时，fis3将自动拼合雪碧图。**建议配合node插件`spritelist`来使用！**
 - `src/css/_func.less`提供了很多有用的方法，如`.u-input`样式设置`<input>`输入框的样式，将直接兼容IE7+，否则你将写一大堆兼容性的代码，还有`.transition`, `.transform`等less方法可以使用，已自动补全前缀了。
 
 ##使用说明
