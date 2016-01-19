@@ -2,20 +2,51 @@
 @import "_kreset.less";
 @import "_comm_m.less";
 
-/*@media媒体查询，进行自适应调整*/
-// 根据设计稿选择相应的media样式
-@import "_media_640x960.less";
-// @import "_media_750x1134.less";
+// reset样式补充
+html{-ms-text-size-adjust:100%; -webkit-text-size-adjust:100%; text-size-adjust:100%;}
 
-html{ -ms-text-size-adjust:100%; -webkit-text-size-adjust:100%; text-size-adjust:100%;}
-
-/*
-所有单位使用rem。
-注：安卓下<textarea>标签的内容字体大小不支持rem设置，如有需要使用响应式及px单位设置其字体。
-*/
+/**
+* 单屏总容器样式
+html,body{width: 100%; height: 100%; overflow: hidden;}
 // 总框架
 .g-wrap{ width: 100%; height: 100%; min-height: 100%; position: relative; }
 .g-content{position: absolute; top: 0; border: 0; left: 0; right: 0; width: 100%; overflow: hidden;
   -webkit-overflow-scrolling:touch; overflow-scrolling:touch;
+}
+*/
+
+/**
+* 长页面总容器样式
+*/
+html, body{width: 100%; display: -webkit-box; display: box; -webkit-box-orient:vertical; box-orient:vertical; -webkit-box-align: center; box-align: center; -webkit-overflow-scrolling:touch; overflow-scrolling:touch;}
+.g-wrap{width: 100%; position: relative; min-height: 100%;}
+
+/** 网站主题样式设定 */
+// 字体
+html,body,h1,h2,h3,h4,h5,h6,div,dl,dt,dd,ul,ol,li,p,blockquote,pre,hr,figure,table,caption,th,td,form,fieldset,legend,input,button,textarea,menu,select{font:.28rem/1.5 "微软雅黑","microsoft yahei","songti",Verdana,Arial,Helvetica,STHeiti,sans-serif;}
+
+// 颜色
+body,textarea,input,button,select{color:#2c3035;}
+a{color:#fff;
+  // &:visited{color: #333;}
+  // &:hover{color: #116ccb;}
+  // &:active{color: #116ccb;}
+}
+
+// 背景色
+body{background: #f0f0f0;}
+
+// 不同状态下进行调整
+html{
+  &.loading{
+    .g-wrap{display: none;}
+    .g-loading{display: block;}
+  }
+  &.forhorview{
+    .g-wrap{display: none;}
+    .g-forhorview{display: block;}
+  }
+  .g-loading{display: none;}
+  .g-forhorview{display: none;}
 }
 

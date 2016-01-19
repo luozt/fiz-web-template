@@ -89,3 +89,4 @@ fis-conf.js默认已配置了本地打包的设置，但有一点可能还需开
     packTo: "src/pkg/autocombined.css"
   });
   ```
+* css大部分单位都采用rem，只有如少数border为1px的地方使用px单位。而安卓下`<textarea>`标签的内容字体大小不支持rem设置，如有需要使用响应式及px单位设置其字体。
