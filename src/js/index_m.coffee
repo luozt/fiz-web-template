@@ -19,7 +19,7 @@ App = (options)->
   }
   this.init()
 
-  return null
+  return true
 
 App.prototype.init = ()->
   self = this
@@ -51,7 +51,9 @@ App.prototype.init = ()->
 
     $html.removeClass("loading")
 
-    options.oninit()
+    setTimeout(()->
+      options.oninit()
+    , 0)
 
   # 手机横向转换时执行
   orientationchangeAct = (e)->
