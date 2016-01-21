@@ -23,22 +23,22 @@ App = (options)->
 
 App.prototype.init = ()->
   self = this
-  # 处理短屏下缩放，以及初始化时固定页面大小，防止竖屏下弹出键盘或横屏时页面发生缩放的情况
-  initScreen = ()->
-    $html = $("html")
-    rootElem = document.documentElement
-    winW = rootElem.clientWidth
-    winH = rootElem.clientHeight
-    options = self.options
-    psdWidth = options.psdWidth
-    psdHeight = options.psdHeight
-    isLongPage = options.isLongPage
-    psdRatio = options.psdRatio
-    defaultFontSize = 16 #默认的字体大小
-    fontSizeRatio = 100/psdRatio/defaultFontSize #设置fontSize的比率
-    rootFontSizeVertical = winW/(psdWidth/2)*fontSizeRatio*100+"%" #竖屏的FontSize
-    rootFontSizeHorizontal = winH/(psdHeight/2)*fontSizeRatio*100+"%" #横屏的FontSize
+  $html = $("html")
+  rootElem = document.documentElement
+  winW = rootElem.clientWidth
+  winH = rootElem.clientHeight
+  options = self.options
+  psdWidth = options.psdWidth
+  psdHeight = options.psdHeight
+  isLongPage = options.isLongPage
+  psdRatio = options.psdRatio
+  defaultFontSize = 16 #默认的字体大小
+  fontSizeRatio = 100/psdRatio/defaultFontSize #设置fontSize的比率
+  rootFontSizeVertical = winW/(psdWidth/2)*fontSizeRatio*100+"%" #竖屏的FontSize
+  rootFontSizeHorizontal = winH/(psdHeight/2)*fontSizeRatio*100+"%" #横屏的FontSize
 
+  # 处理短屏下缩放，以及初始化时固定页面大小，防止竖屏下弹出键盘或横屏时页面发生缩放的情况
+  mediaScreen = ()->
     if isLongPage
       #长页面时使用，不缩放
       $html.css("font-size", rootFontSizeVertical)
@@ -49,14 +49,8 @@ App.prototype.init = ()->
       else
         $html.css("font-size", rootFontSizeVertical)
 
-    $html.removeClass("loading")
-
-    setTimeout(()->
-      options.oninit()
-    , 0)
-
   # 手机横向转换时执行
-  orientationchangeAct = (e)->
+  orientationchangeAct = (e, banMediaScreen)->
     $html = $("html")
     if 90 == window.orientation or -90 == window.orientation
       #横屏时显示提示框
@@ -64,7 +58,8 @@ App.prototype.init = ()->
     else
       #竖屏恢复默认显示效果
       $html.removeClass("forhorview")
-      setTimeout(initScreen, 300)
+      if !banMediaScreen
+        setTimeout(mediaScreen, 300)
     self.options.onorichange(e)
     resizeAct(e)
 
@@ -72,13 +67,20 @@ App.prototype.init = ()->
   resizeAct = (e)->
     self.options.onresize(e)
 
-  initScreen()
-  orientationchangeAct()
+  mediaScreen()
+  orientationchangeAct(null, true)
 
   evtName = if "onorientationchange" in window then "orientationchange" else "resize"
   $(window).on(evtName, (e)->
     orientationchangeAct(e)
   )
+
+  #page inited
+  $html.removeClass("loading")
+
+  setTimeout(()->
+    options.oninit()
+  , 0)
 
 #ready run
 $(()->
