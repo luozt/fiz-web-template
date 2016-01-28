@@ -71,9 +71,12 @@ fis-conf.js默认已配置了本地打包的设置，但有一点可能还需开
   });
 ```
 
-## 开发TIPS
+## 模板使用TIPS
 
 * 默认fis-conf.js配置认为所有用到的HTML模板放在`tpls/`文件夹，故针对tpls文件夹进行处理。如果开发者需要定义自己的模板文件名，则可修改fis-conf.js对应的代码。
+
+## PC开发TIPS
+
 * `src/css/_sprites.less`已提供雪碧图的使用示例，开发者无需自己拼合雪碧图，只需按照这个文件的写法，在发布时，fis3将自动拼合雪碧图。**建议配合node插件`spritelist`来使用！**
 * `src/css/_func.less`提供了很多有用的方法，如`.u-input`样式设置`<input>`输入框的样式，将直接兼容IE7+，否则你将写一大堆兼容性的代码，还有`.transition`, `.transform`等less方法可以使用，已自动补全前缀了。
 * js,css文件可以加个`pkg.`的文件名前缀，这样打包后会自动合并在一个文件。比如很多js的lib插件，`jquery.scrollable.js`改为`pkg.jquery.scrollable.js`,`jquery.tabs.js`改为`pkg.jquery.tabs.js`。相应的fis配置如下：
@@ -89,4 +92,32 @@ fis-conf.js默认已配置了本地打包的设置，但有一点可能还需开
     packTo: "src/pkg/autocombined.css"
   });
   ```
-* css大部分单位都采用rem，只有如少数border为1px的地方使用px单位。而安卓下`<textarea>`标签的内容字体大小不支持rem设置，如有需要使用响应式及px单位设置其字体。
+
+##移动开发TIPS
+
+* css大部分单位都采用rem，只有如少数border为1px的地方使用px单位。而安卓下`<textarea>`标签的内容字体大小不支持rem设置，如有需要使用响应式及px单位设置其字体
+* 模板默认HTML标签有`.loading`，当页面加载完成会去掉`.loading`；当页面横屏时会加上`.forhorview`。故可以利用这个设定对加载前、加载完成、横屏时的页面进行调整。默认已进行了一些调整了，在`src/css/index_m.less`里
+* `src/js/index_m.coffee`提供一些设定，其中部分还会影响页面的rem单位的使用，如下：
+
+  ```coffeescript
+  this.options = {
+    #是否是长页面（用于计算rem）
+    isLongPage: if undefined != options.isLongPage then options.isLongPage else true
+    #PSD的宽度（用于计算rem）
+    psdWidth: options.psdWidth || 750
+    #PSD相对实图的比例（用于计算rem）
+    psdRatio: options.psdRatio || 2
+    #PSD的高度（单屏使用）
+    psdHeight: options.psdHeight || 1206
+    #视图大小变化会触发的事件
+    onresize: options.onresize || ()->
+    #项目初始化后执行
+    oninit: options.oninit || ()->
+    #视图旋转后执行
+    onorichange: options.onorichange || ()->
+  }
+  ```
+
+  开发者根据自己的项目需求进行自定义设定
+
+

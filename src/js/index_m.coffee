@@ -2,14 +2,14 @@
 App = (options)->
   options = options || {}
   this.options = {
-    #PSD的宽度
-    psdWidth: options.psdWidth || 750
-    #PSD的高度
-    psdHeight: options.psdHeight || 1206
-    #PSD相对实图的比例
-    psdRatio: options.psdRatio || 2
-    #是否是长页面
+    #是否是长页面（用于计算rem）
     isLongPage: if undefined != options.isLongPage then options.isLongPage else true
+    #PSD的宽度（用于计算rem）
+    psdWidth: options.psdWidth || 750
+    #PSD相对实图的比例（用于计算rem）
+    psdRatio: options.psdRatio || 2
+    #PSD的高度（单屏使用）
+    psdHeight: options.psdHeight || 1206
     #视图大小变化会触发的事件
     onresize: options.onresize || ()->
     #项目初始化后执行
