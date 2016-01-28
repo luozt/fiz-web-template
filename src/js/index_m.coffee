@@ -8,7 +8,7 @@ App = (options)->
     psdWidth: options.psdWidth || 750
     #PSD相对实图的比例（用于计算rem）
     psdRatio: options.psdRatio || 2
-    #PSD的高度（单屏使用）
+    #PSD的高度（用于计算rem。单屏使用，如果是长页面则可不理）
     psdHeight: options.psdHeight || 1206
     #视图大小变化会触发的事件
     onresize: options.onresize || ()->
