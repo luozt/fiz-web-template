@@ -259,3 +259,44 @@
 .triangleIcon(@direction, @length, @color){
   display:block; width: 0; height: 0; border: .5px*@length solid transparent; border-@{direction}-color:@color;
 }
+
+
+// 布局
+.u-flexBox-col(){
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:flex;
+
+  -webkit-box-orient: vertical;
+  -webkit-flex-flow:column;
+  flex-flow:column;
+}
+
+.u-flexBox-row(){
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:flex;
+
+  -webkit-box-orient: horizontal;
+  -webkit-flex-flow:row;
+  flex-flow:row;
+}
+
+.u-flex(@num){
+  -webkit-box-flex:@num;
+  -webkit-flex:@num;
+  box-flex: @num;
+  flex:@num;
+}
+
+.u-overAuto(){
+  overflow: auto;
+  -webkit-overflow-scrolling:touch;
+  overflow-scrolling:touch;
+}
+
+.u-borderBox(){
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
