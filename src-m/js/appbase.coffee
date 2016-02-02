@@ -2,13 +2,13 @@
 App = (options)->
   options = options || {}
   this.options = {
-    #是否是长页面（用于计算rem）
+    #是否是长页面
     isLongPage: if undefined != options.isLongPage then options.isLongPage else true
-    #PSD的宽度（用于计算rem）
+    #PSD的宽度
     psdWidth: options.psdWidth || 750
-    #PSD相对实图的比例（用于计算rem）
+    #PSD相对实图的比例
     psdRatio: options.psdRatio || 2
-    #PSD的高度（用于计算rem。单屏使用，如果是长页面则可不理）
+    #PSD的高度（单屏使用）
     psdHeight: options.psdHeight || 1206
     #视图大小变化会触发的事件
     onresize: options.onresize || ()->
@@ -17,10 +17,10 @@ App = (options)->
     #视图旋转后执行
     onorichange: options.onorichange || ()->
   }
-  this.init()
 
   return true
 
+#初始化动作
 App.prototype.init = ()->
   self = this
   $html = $("html")
@@ -82,9 +82,5 @@ App.prototype.init = ()->
     options.oninit()
   , 0)
 
-#ready run
-$(()->
-  app = new App({
-    psdWidth: 720
-  })
-)
+#exports
+window.App = App

@@ -1,44 +1,4 @@
 
-// 兼容IE7+的input元素写法
-@ie8-10-fix:~"\0";
-@placeholderColor: #a8acb4;
-.u-input(@height, @lineHeight, @paddingTop, @paddingBottom){
-  height: 1px*@lineHeight;
-  line-height: 1px*@lineHeight;
-  padding-top:1px*@paddingTop;
-  padding-bottom: 1px*@paddingBottom;
-  height: @height*1px@ie8-10-fix;
-  line-height:@height*1px@ie8-10-fix;
-  padding-top: 0px@ie8-10-fix;
-  padding-bottom: 0px@ie8-10-fix;
-  *height: 1px*@height;
-  *line-height: 1px*@height;
-  *padding-top: 0;
-  *padding-bottom: 0;
-  &::-webkit-input-placeholder {color:@placeholderColor;}
-  &:-moz-placeholder {color:@placeholderColor;}
-  &::-moz-placeholder {color:@placeholderColor;}
-  &:-ms-input-placeholder {color:@placeholderColor;}
-}
-.u-input(@height, @lineHeight, @paddingTop, @paddingBottom,@placeholderColor){
-  height: 1px*@lineHeight;
-  line-height: 1px*@lineHeight;
-  padding-top:1px*@paddingTop;
-  padding-bottom: 1px*@paddingBottom;
-  height: @height*1px@ie8-10-fix;
-  line-height:@height*1px@ie8-10-fix;
-  padding-top: 0px@ie8-10-fix;
-  padding-bottom: 0px@ie8-10-fix;
-  *height: 1px*@height;
-  *line-height: 1px*@height;
-  *padding-top: 0;
-  *padding-bottom: 0;
-  &::-webkit-input-placeholder {color:@placeholderColor;}
-  &:-moz-placeholder {color:@placeholderColor;}
-  &::-moz-placeholder {color:@placeholderColor;}
-  &:-ms-input-placeholder {color:@placeholderColor;}
-}
-
 .text-shadow (@string: 0 1px 3px rgba(0, 0, 0, 0.25)) {
   text-shadow: @string;
 }

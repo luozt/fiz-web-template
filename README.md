@@ -9,34 +9,20 @@ Web开发模板，包括PC开发模板，移动开发模板。
 ```
 fis-conf.js                             //fis3配置文件
 |
-src                                     //存放该项目源码
-|--index.jade                           //jade页面PC模板
-|--index_m.jade                         //jade页面mobile模板
-|--css
-|    |--_sprites.less                   //雪碧图示例
-|    |--_comm.less                      //Web项目常用样式
-|    |--_func.less                      //常用less函数方法
-|    |--_kreset.less                    //重置样式
-|    |--_media_640x960.less             //设计图为640x960的媒体查询自适应调整样式
-|    |--_media_750x1134.less            //设计图为750x1134的媒体查询自适应调整样式
-|    |--index.less                      //PC初始样式
-|    |--index_m.less                    //mobile初始样式
-|--js
-|    |--index.coffee                    //PC初始脚本
-|    |--index_m.coffee                  //mobile初始脚本
+src/                                    //存放PC项目模板
+|
+src-m/                                  //存放移动端项目模板
 ```
 
 ##summary
 
-本模板采用百度fis3作为前端构建工具，支持jade模板，CoffeeScript，Less等预编译语言工具。兼容IE7+。
+本模板采用百度fis3作为前端构建工具，支持jade模板，CoffeeScript，Less等预编译语言工具。
 
 ##使用说明
 
-本项目包括了PC开发和移动开发的版本，移动开发版本文件后面都带"_m"后缀。
+`src`文件夹包含的是PC端的项目模板，兼容IE7+。
 
-PC开发，可把带"_m"后缀的文件和其他相应的移动开发文件删掉；
-
-移动开发，只要把带"_m"后缀文件同名的文件删掉，选择好_media样式来引入，默认引入640x960的版本。
+`src-m`文件夹包含的是移动端的项目模板。如果要使用的是移动端的模板，则把PC端的`src`文件夹删掉，再`src-m`改名为`src`了
 
 ##开发环境说明
 
@@ -44,7 +30,7 @@ PC开发，可把带"_m"后缀的文件和其他相应的移动开发文件删�
 
 先安装[nodejs](https://nodejs.org/),利用nodejs的插件来进行开发：
 
-1、安装插件：`npm i fiz -g`
+1、安装插件：`npm i -g fiz`
 
 2、启动fiz服务器： `fiz server start`, 将自动打开127.0.0.1:8080端口进行调试和预览
 
@@ -96,18 +82,18 @@ fis-conf.js默认已配置了本地打包的设置，但有一点可能还需开
 ##移动开发TIPS
 
 * css大部分单位都采用rem，只有如少数border为1px的地方使用px单位。而安卓下`<textarea>`标签的内容字体大小不支持rem设置，如有需要使用响应式及px单位设置其字体
-* 模板默认HTML标签有`.loading`，当页面加载完成会去掉`.loading`；当页面横屏时会加上`.forhorview`。故可以利用这个设定对加载前、加载完成、横屏时的页面进行调整。默认已进行了一些调整了，在`src/css/index_m.less`里
-* `src/js/index_m.coffee`提供一些设定，其中部分还会影响页面的rem单位的使用，如下：
+* 模板默认HTML标签有`.loading`，当页面加载完成会去掉`.loading`；当页面横屏时会加上`.forhorview`。故可以利用这个设定对加载前、加载完成、横屏时的页面进行调整。默认已进行了一些调整了，在`src-m/css/index.less`里
+* `src-m/js/appbase.coffee`提供一些设定，其中部分还会影响页面的rem单位的使用，如下：
 
   ```coffeescript
   this.options = {
-    #是否是长页面（用于计算rem）
+    #是否是长页面
     isLongPage: if undefined != options.isLongPage then options.isLongPage else true
-    #PSD的宽度（用于计算rem）
+    #PSD的宽度
     psdWidth: options.psdWidth || 750
-    #PSD相对实图的比例（用于计算rem）
+    #PSD相对实图的比例
     psdRatio: options.psdRatio || 2
-    #PSD的高度（用于计算rem。单屏使用，如果是长页面则可不理）
+    #PSD的高度（单屏使用）
     psdHeight: options.psdHeight || 1206
     #视图大小变化会触发的事件
     onresize: options.onresize || ()->
