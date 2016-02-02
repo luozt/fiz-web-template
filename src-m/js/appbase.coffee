@@ -25,8 +25,6 @@ App.prototype.init = ()->
   self = this
   $html = $("html")
   rootElem = document.documentElement
-  winW = rootElem.clientWidth
-  winH = rootElem.clientHeight
   options = self.options
   psdWidth = options.psdWidth
   psdHeight = options.psdHeight
@@ -34,11 +32,15 @@ App.prototype.init = ()->
   psdRatio = options.psdRatio
   defaultFontSize = 16 #默认的字体大小
   fontSizeRatio = 100/psdRatio/defaultFontSize #设置fontSize的比率
-  rootFontSizeVertical = winW/(psdWidth/2)*fontSizeRatio*100+"%" #竖屏的FontSize
-  rootFontSizeHorizontal = winH/(psdHeight/2)*fontSizeRatio*100+"%" #横屏的FontSize
 
   # 处理短屏下缩放，以及初始化时固定页面大小，防止竖屏下弹出键盘或横屏时页面发生缩放的情况
   mediaScreen = ()->
+    winW = rootElem.clientWidth
+    winH = rootElem.clientHeight
+
+    rootFontSizeVertical = winW/(psdWidth/2)*fontSizeRatio*100+"%" #竖屏的FontSize
+    rootFontSizeHorizontal = winH/(psdHeight/2)*fontSizeRatio*100+"%" #横屏的FontSize
+
     if isLongPage
       #长页面时使用，不缩放
       $html.css("font-size", rootFontSizeVertical)
