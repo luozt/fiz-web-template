@@ -33,9 +33,6 @@ fis.set("project.ignore", ["node_modules/**", ".git/**"]);
 fis.set("project.charset", "utf8");
 
 fis.config.set('settings.parser.jade', {
-  // filters : {
-  //   jadesrc : require('jade-highlighter')
-  // },
   pretty: true
 });
 
