@@ -67,6 +67,15 @@ fis.match("::package", {
   })
 });
 
+// 这是指定打包js的路径
+fis.match("::package", {
+  postpackager: fis.plugin("loader", {
+    allInOne: {
+      js: "src/pkg/${filepath}_aio.js"
+    }
+  })
+});
+
 */
 
 
