@@ -56,6 +56,20 @@ fis.match("_**", {
   release: false
 });
 
+
+/*把每个页面引入的JS/CSS都打包成一个文件
+* 但由于lib文件是不改的，业务js则经常改
+* 所以不建议这么做
+
+fis.match("::package", {
+  postpackager: fis.plugin("loader", {
+    allInOne: true
+  })
+});
+
+*/
+
+
 fis
   .match('**.{js,coffee,html,jade,css,less,png,jpg,jpeg,gif,mp3,mp4,flv,swf,svg,eot,ttf,woff,woff2}', {
     useHash: false
