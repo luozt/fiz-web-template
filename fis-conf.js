@@ -133,7 +133,7 @@ fis.media("qa")
   .match('**.{css,less}', {
     useSprite: true
   })
-  .match("index**.{jade,html}", {
+  .match("index*.{jade,html}", {
     useHash: false
   })
   .match("tpls/**.{jade,html}", {
@@ -168,7 +168,7 @@ fis.media("pr")
       minifyJS: true
     })
   })
-  .match("index**.{jade,html}", {
+  .match("index*.{jade,html}", {
     useHash: false
   })
   .match("tpls/**.{jade,html}", {
@@ -186,7 +186,7 @@ fis.media("pu")
     domain: fis.get("cdn-path-push"),
     useHash: true
   })
-  .match("index**.{jade,html}", {
+  .match("index*.{jade,html}", {
     useHash: false
   })
   .match("tpls/**.{jade,html}", {
