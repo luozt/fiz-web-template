@@ -105,5 +105,5 @@ fis-conf.js默认已配置了本地打包的设置，但有一点可能还需开
   ```
 
   开发者根据自己的项目需求进行自定义设定
-
+* 本开发模板是根据netease网站小组的规范来编写的。使用rem布局也可使用淘宝插件：[lib-flexible](https://github.com/amfe/lib-flexible)
 
