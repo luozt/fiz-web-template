@@ -132,6 +132,11 @@ fis.media('lc')
   .match('**.{css,less}', {
     useSprite: true
   })
+  .match("**.png", {
+    optimizer: fis.plugin("png-compressor", {
+      type: "pngquant"
+    })
+  })
   .match('**', {
     relative: true,
     deploy: [fis.plugin('encoding'),fis.plugin('local-supply', {
@@ -155,6 +160,11 @@ fis.media("qa")
   })
   .match('**.{css,less}', {
     useSprite: true
+  })
+  .match("**.png", {
+    optimizer: fis.plugin("png-compressor", {
+      type: "pngquant"
+    })
   })
   .match("index*.{jade,html}", {
     useHash: false
@@ -189,6 +199,11 @@ fis.media("pr")
       removeComments: true,
       collapseWhitespace: true,
       minifyJS: true
+    })
+  })
+  .match("**.png", {
+    optimizer: fis.plugin("png-compressor", {
+      type: "pngquant"
     })
   })
   .match("index*.{jade,html}", {
