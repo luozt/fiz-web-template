@@ -14,10 +14,10 @@ fis.set("http-push-to", "/usr/share/nginx/html/res");
 
 /*用户自定义配置
 -------------------------*/
-// 打包go文件
-fis.match("src/js/go.**.{coffee,js}", {
+// 示例：打包go前缀开头文件的为一个文件
+/*fis.match("src/js/go.**.{coffee,js}", {
   packTo: "src/pkg/go.js"
-});
+});*/
 
 /*统一配置
 (开发者无需修改，特殊情况除外)
@@ -35,6 +35,17 @@ fis.set("project.charset", "utf8");
 fis.config.set('settings.parser.jade', {
   pretty: true
 });
+
+// 增加对jsx文件的编译支持
+fis.config.set('project.fileType.text', 'jsx'); //*.jsx files are text file.
+fis.config.set('modules.parser.jsx', 'react');  //compile *.jsx with fis-parser-react plugin
+fis.config.set('roadmap.ext.jsx', 'js');        //*.jsx are exactly treat as *.js
+
+fis.match("src/**.jsx", {
+  parser: fis.plugin("react"),
+  rExt: ".js"
+});
+
 
 fis.match("src/css/**.less", {
   parser: fis.plugin("less"),
@@ -55,29 +66,6 @@ fis.match("src/**.coffee", {
 fis.match("_**", {
   release: false
 });
-
-
-/*把每个页面引入的JS/CSS都打包成一个文件
-* 但由于lib文件是不改的，业务js则经常改
-* 所以不建议这么做
-
-fis.match("::package", {
-  postpackager: fis.plugin("loader", {
-    allInOne: true
-  })
-});
-
-// 这是指定打包js的路径
-fis.match("::package", {
-  postpackager: fis.plugin("loader", {
-    allInOne: {
-      js: "src/pkg/${filepath}_aio.js"
-    }
-  })
-});
-
-*/
-
 
 fis
   .match('**.{js,coffee,html,jade,css,less,png,jpg,jpeg,gif,mp3,mp4,flv,swf,svg,eot,ttf,woff,woff2}', {
@@ -118,19 +106,49 @@ fis.match('src/**.{jade,html}', {
   })
 });
 
+
+/*把每个页面引入的JS/CSS都打包成一个文件
+* 但由于lib文件是不改的，业务js则经常改
+* 所以不建议这么做
+
+fis.match("::package", {
+  postpackager: fis.plugin("loader", {
+    allInOne: true
+  })
+});
+
+// 这是指定打包js的路径
+fis.match("::package", {
+  postpackager: fis.plugin("loader", {
+    allInOne: {
+      js: "src/pkg/${filepath}_aio.js"
+    }
+  })
+});
+*/
+
+
 /*本地打包（相对路径）
   测试环境打包（绝对路径）
   正式环境打包（绝对路径）
 -------------------------*/
 
 //本地打包，相对路径
+//新修改本地打包默认打包为一个css、js文件
+//默认进行最小化压缩
 fis.media('lc')
   .hook("relative")
   .match("::package", {
-    postpackager: fis.plugin('loader')
+    postpackager: fis.plugin('loader', {
+      allInOne: true
+    })
   })
   .match('**.{css,less}', {
-    useSprite: true
+    useSprite: true,
+    optimizer: fis.plugin('clean-css')
+  })
+  .match('**.{js,coffee}',{
+    optimizer: fis.plugin('uglify-js')
   })
   .match("**.png", {
     optimizer: fis.plugin("png-compressor", {
@@ -147,6 +165,10 @@ fis.media('lc')
   // 模板发布到服务器后以相对服务器的路径进行配置
   .match("src/**/*.{jade,html}", {
     relative: "/src"
+  })
+  // 下面配置可将/lc/src文件夹下的所有内容直接放在发布后的/lc文件下下
+  .match('src/(**)',{
+    release:"$1"
   });
 
 // 测试环境
