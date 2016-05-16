@@ -1,0 +1,32 @@
+{
+  "name": "fiz-web-template",
+  "version": "1.0.0",
+  "description": "本项目可以直接通过fiz这个node插件下载：`fiz get web`",
+  "scripts": {
+    "build-lc": "fiz release lc",
+    "build-qa": "fiz release qa",
+    "build-pr": "fiz release pr",
+    "build": "npm run build-lc",
+    "postinstall": "npm run build",
+    "watch": "fiz release -w",
+    "clean": "fiz server stop && fiz server clean",
+    "dev": "fiz server start && fiz release -w",
+    "dev-pu": "fiz release pu -w",
+    "stop": "fiz server stop",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/luozt/fiz-web-template.git"
+  },
+  "author": "luozhitao",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/luozt/fiz-web-template/issues"
+  },
+  "homepage": "https://github.com/luozt/fiz-web-template#readme",
+  "dependencies": {
+    "fiz": "^1.4.4",
+    "jquery": "^2.2.3"
+  }
+}

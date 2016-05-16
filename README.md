@@ -1,46 +1,43 @@
 #web开发项目模板
 
-> 本项目可以直接通过fiz这个node插件下载：`fiz clone web`
-
-Web开发模板，包括PC开发模板，移动开发模板。
-
-##文件结构说明
-
-```
-fis-conf.js                             //fis3配置文件
-|
-src/                                    //存放PC项目模板
-|
-src-m/                                  //存放移动端项目模板
-```
+> 本项目可以直接通过fiz这个node插件下载：`fiz get web`
 
 ##summary
 
-本模板采用百度fis3作为前端构建工具，支持jade模板，CoffeeScript，Less等预编译语言工具。
-
-##使用说明
+Web开发模板，包括PC开发模板，移动开发模板。本模板采用百度fis3作为前端构建工具，支持jade模板，CoffeeScript，Less, React等预编译语言工具。
 
 `src`文件夹包含的是PC端的项目模板，兼容IE7+。
 
 `src-m`文件夹包含的是移动端的项目模板。如果要使用的是移动端的模板，则把PC端的`src`文件夹删掉，再`src-m`改名为`src`了
 
+**使用范例：**本人个人实践项目[react admin ctrl](https://github.com/luozt/react-admin-ctrl)已进行了使用，并利用了fis的require功能和react的编译，可以进行参考和使用。
+
 ##开发环境说明
 
-本项目使用fis3前端构建工具，但已通过封装为**FIZ**插件，故请按照以下步骤进行环境安装。
+本项目使用fis3前端构建工具，但已通过封装为**FIZ**插件，故请按照以下步骤进行环境安装和使用。
 
-先安装[nodejs](https://nodejs.org/),利用nodejs的插件来进行开发：
+先安装[nodejs](https://nodejs.org/)，利用nodejs的插件来进行开发：
 
-1、安装插件：`npm i -g fiz`
+1、安装插件：`npm i`。安装完成后会自动打包，如果还没开发完，直接删除即可。
 
-2、启动fiz服务器： `fiz server start`, 将自动打开127.0.0.1:8080端口进行调试和预览
+2、启动fiz服务器进行本地调试： `npm run dev`, 将自动打开<http://127.0.0.1:8080/>进行调试和预览
 
-3、编译项目并监听变化：
+开发命令列表：
 
-  * 本地调试：`fiz release -w`
-  * 远程环境调试：`fiz release pu -w`
-  * 相对路径打包：`fiz release lc`
-  * 测试环境打包：`fiz release qa`
-  * 正式环境打包：`fiz release pr`
+* 本地调试：`npm run dev`
+* 远程环境调试：`npm run dev-pu`
+* 相对路径打包：`npm run build-lc`，默认打相对路径的包
+* 测试环境打包：`npm run build-qa`
+* 正式环境打包：`npm run build-pr`
+
+##fis-conf配置说明
+
+* `/src/index.html`的`__NODE_ENV`变量在打包时，会替换为相应环境的字符串：dev | lc | qa | pr
+* 所有版本的打包，都会把css、js文件各自合并在一个文件中，也就是一个html对应只有1个css和1个js，减少http请求，就是这么简单粗暴。
+* 以unmod.开头的文件将不被视为模块
+* （没启用）以pkg.开头的js文件在pr打包时将被合并为一个js文件
+* （没启用）以pkg.开头的css文件在pr打包时将被合并为一个css文件
+
 
 ##打相对路径包说明
 
@@ -52,7 +49,7 @@ fis-conf.js默认已配置了本地打包的设置，但有一点可能还需开
 
 ```javascript
   // 模板发布到服务器后以相对服务器的路径进行配置
-  .match("src/*/**.jade", {
+  .match("src/*/**.{jade,html}", {
     relative: "/src"
   });
 ```
@@ -83,27 +80,19 @@ fis-conf.js默认已配置了本地打包的设置，但有一点可能还需开
 
 * css大部分单位都采用rem，只有如少数border为1px的地方使用px单位。而安卓下`<textarea>`标签的内容字体大小不支持rem设置，如有需要使用响应式及px单位设置其字体
 * 模板默认HTML标签有`.loading`，当页面加载完成会去掉`.loading`；当页面横屏时会加上`.forhorview`。故可以利用这个设定对加载前、加载完成、横屏时的页面进行调整。默认已进行了一些调整了，在`src-m/css/index.less`里
-* `src-m/js/appbase.coffee`提供一些设定，其中部分还会影响页面的rem单位的使用，如下：
-
-  ```coffeescript
-  this.options = {
-    #是否是长页面
-    isLongPage: if undefined != options.isLongPage then options.isLongPage else true
-    #PSD的宽度
-    psdWidth: options.psdWidth || 750
-    #PSD相对实图的比例
-    psdRatio: options.psdRatio || 2
-    #PSD的高度（单屏使用）
-    psdHeight: options.psdHeight || 1206
-    #视图大小变化会触发的事件
-    onresize: options.onresize || ()->
-    #项目初始化后执行
-    oninit: options.oninit || ()->
-    #视图旋转后执行
-    onorichange: options.onorichange || ()->
-  }
-  ```
-
-  开发者根据自己的项目需求进行自定义设定
 * 本开发模板是根据netease网站小组的规范来编写的。使用rem布局也可使用淘宝插件：[lib-flexible](https://github.com/amfe/lib-flexible)
 
+
+##文件结构说明
+
+```
+fis-conf.js                             //fis3配置文件
+|
+src/                                    //存放PC项目模板
+|
+src-m/                                  //存放移动端项目模板
+|
+.env                                    // heroku文件
+|
+Procfile                                // heroku文件
+```
