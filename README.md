@@ -38,6 +38,10 @@ Web开发模板，包括PC开发模板，移动开发模板。本模板采用百
 * （没启用）以pkg.开头的js文件在pr打包时将被合并为一个js文件
 * （没启用）以pkg.开头的css文件在pr打包时将被合并为一个css文件
 
+##开发说明
+
+* 项目采用fis-mod模块来进行模块封装，在`src/index.js`里通过`//@require fis-mod`的方式引入，把相应的js封装为模块。在具体模块中，模块的引入使用`require`，模块的输出使用`module.exports`或者`exports`
+
 
 ##打相对路径包说明
 
